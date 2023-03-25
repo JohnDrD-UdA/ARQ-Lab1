@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Ceremoniagradoid:" for="ceremoniagradoid" />
+                    <h:inputText id="ceremoniagradoid" value="#{ceremoniasMBean.details.ceremoniagradoid}" title="Ceremoniagradoid" required="true" requiredMessage="The Ceremoniagradoid field is required."/>
+                    <h:outputLabel value="Fechaceremonia:" for="fechaceremonia" />
+                    <h:inputText id="fechaceremonia" value="#{ceremoniasMBean.details.fechaceremonia}" title="Fechaceremonia" required="true" requiredMessage="The Fechaceremonia field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="Limiteinscripcion:" for="limiteinscripcion" />
+                    <h:inputText id="limiteinscripcion" value="#{ceremoniasMBean.details.limiteinscripcion}" title="Limiteinscripcion" required="true" requiredMessage="The Limiteinscripcion field is required.">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="Lugar:" for="lugar" />
+                    <h:inputText id="lugar" value="#{ceremoniasMBean.details.lugar}" title="Lugar" required="true" requiredMessage="The Lugar field is required."/>
+                </h:panelGrid>
+                <br/>
+<h:commandButton id="back" value="Back" action="#{ceremoniasMBean.list()}"/>
+<h:commandButton id="update" value="Update" action="#{ceremoniasMBean.update()}"/>
+                <h:commandButton id="delete" value="DELETE" action="#{ceremoniasMBean.delete()}"/>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
