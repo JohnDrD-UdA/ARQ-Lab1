@@ -1,0 +1,92 @@
+create table Estudiantes (  
+    estudianteId int NOT NULL,   
+    PRIMARY KEY(estudianteId),  
+    nombreEstudiante varchar(50) NOT NULL,  
+    email varchar(30) NOT NULL,  
+    telefono varchar(10) NOT NULL  
+) ;
+
+create table PlanEstudios(  
+    PlanId int NOT NULL,  
+    ProgramaId int NOT NULL,  
+    FacultadId int NOT NULL,  
+    PRIMARY KEY(PlanId)  
+)  
+ ;
+
+create table Materia (   
+    MateriaId int NOT NULL,  
+    planId int NOT NULL,  
+    nombreMateria varchar(20) NOT NULL,   
+    tipoMateria varchar(15) NOT NULL,   
+    PRIMARY KEY(MateriaId),  
+    FOREIGN KEY(planId) REFERENCES PlanEstudios(PlanId)  
+) ;
+
+create table HistoriaAcademica (  
+    historiaId int NOT NULL,  
+    estudianteId int NOT NULL,  
+    planId int NOT NULL,  
+    PRIMARY KEY(historiaId),  
+    FOREIGN KEY(planId) REFERENCES PlanEstudios(PlanId),  
+    FOREIGN KEY(estudianteId) REFERENCES Estudiantes(estudianteId)  
+)  
+ ;
+
+create table PazYSalvos (  
+    pazYSalvoId int NOT NULL,  
+    historiaId int NOT NULL,  
+    fecha date NOT NULL,  
+    materiasObligatorias int NOT NULL,  
+    materiasElectivas int NOT NULL,  
+    pendientesNota int NOT NULL,  
+    biblioteca int NOT NULL,  
+    cartera int NOT NULL,  
+    impedimento int NOT NULL,  
+    PRIMARY KEY(pazYSalvoId),  
+    FOREIGN KEY(historiaId) REFERENCES HistoriaAcademica(historiaId)  
+) ;
+
+create table CeremoniaGrados(  
+    CeremoniaGradoId int NOT NULL,  
+    FechaCeremonia date NOT NULL,  
+    LimiteInscripcion date NOT NULL,  
+    Lugar varchar(20) NOT NULL,  
+    PRIMARY KEY(CeremoniaGradoId)  
+) ;
+
+create table InscripcionGrado(  
+    inscripcionGradoId int NOT NULL,  
+    pazYSalvoId int NOT NULL,   
+    CeremoniaGradoId int NOT NULL,  
+    FechaInscripcion date NOT NULL,  
+    PRIMARY KEY(inscripcionGradoId),  
+    FOREIGN KEY(pazYSalvoId) REFERENCES PazYSalvos(pazYSalvoId),   
+    FOREIGN KEY(CeremoniaGradoId) REFERENCES CeremoniaGrados(CeremoniaGradoId)   
+) ;
+
+
+
+insert into Estudiantes (estudianteId, nombreEstudiante, email, telefono) 
+values (0000000001, 'Luis Molina Torres', 'luis.molina@udea.edu.co','3103216547');
+
+insert into Estudiantes (estudianteId, nombreEstudiante, email, telefono) 
+values (0000000002, 'Maria Aguilar Aguirre', 'maria.aguilar@udea.edu.co','3216549871');
+
+insert into Estudiantes (estudianteId, nombreEstudiante, email, telefono) 
+values (0000000003, 'Andres Castro Romero', 'andres.castro@udea.edu.co','3004561235');
+
+insert into Estudiantes (estudianteId, nombreEstudiante, email, telefono) 
+values (0000000004, 'Marina Arias Ruiz', 'marina.arias@udea.edu.co','3149876542');
+
+insert into Estudiantes (estudianteId, nombreEstudiante, email, telefono) 
+values (0000000005, 'Sebastian Mosquera Valero', 'sebastian.mosquera@udea.edu.co','3024569875');
+
+insert into PlanEstudios (planId, programaId, facultadId)  
+values (1, 1, 1) ;
+ 
+insert into Materia (materiaId, planId, nombreMateria, tipoMateria)  
+values (1, 1, 'Calculo', 'Obligatoria'); 
+ 
+insert into CeremoniaGrados (CeremoniaGradoId,FechaCeremonia,LimiteInscripcion,Lugar) 
+values (001,'1990-09-01','1990-09-01','Camilo Torres');
